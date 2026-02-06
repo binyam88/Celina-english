@@ -4,253 +4,116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Celina English Language Academy</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Additional styles for interactivity and new features */
-        #resources .search-container {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        #resources input[type="search"] {
-            width: 100%;
-            max-width: 400px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        #resources .resource-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        #resources .resource-card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-        }
-        #resources .resource-card:hover {
-            transform: translateY(-5px);
-        }
-        #resources .resource-card img.preview {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-        #resources .resource-card.hidden {
-            display: none;
-        }
-        .course-video {
-            width: 100%;
-            height: 200px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        @media (max-width: 768px) {
-            .course-video {
-                height: 150px;
-            }
-        }
-        .social-links {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            padding: 8px 12px;
-            background: #f0f0f0;
-            border-radius: 5px;
-            text-decoration: none;
-            color: #333;
-            transition: background 0.2s;
-        }
-        .social-links a:hover {
-            background: #ddd;
-        }
-        .social-links .icon {
-            width: 20px;
-            height: 20px;
-            margin-right: 5px;
-            background: currentColor;
-            mask-size: contain;
-            mask-repeat: no-repeat;
-            mask-position: center;
-        }
-        .tiktok .icon { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19.84 2.23a1 1 0 0 0-.78-.38H15.5a1 1 0 0 0 0 2h2.56l-3.3 9.07a1 1 0 0 0 .65 1.32l1.41.45a1 1 0 0 0 1.32-.65l3.3-9.07a1 1 0 0 0-.54-1.34zM12 2a10 10 0 1 0 10 10 10 10 0 0 0-10-10zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z'/%3E%3C/svg%3E"); }
-        .youtube .icon { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z'/%3E%3C/svg%3E"); }
-        .telegram .icon { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm4.5 13.5l-4.5-2.25-2.25 2.25v-4.5h4.5z'/%3E%3C/svg%3E"); }
-        .whatsapp .icon { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94
-1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.885 3.488'/%3E%3C/svg%3E"); }
+    <link rel="stylesheet" href="styles.css"> <!-- If you have a separate CSS file, keep it -->
 
-        /* Flashcard App Styles */
-        #flashcards {
-            padding: 60px 20px;
-            background: #f9f9f9;
-            text-align: center;
-        }
-        #flashcards h2 {
-            margin-bottom: 30px;
-        }
-        .flashcard-app {
-            max-width: 400px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    <!-- === Responsive YouTube embed CSS - DO NOT REMOVE === -->
+    <style>
+        /* Makes ALL YouTube videos responsive on mobile, tablet, desktop + fixes cross-browser issues */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;   /* 16:9 ratio (most YouTube videos) */
+            height: 0;
             overflow: hidden;
-            font-family: 'Roboto', sans-serif;
+            background: #000;         /* black background while loading - looks clean */
+            margin: 1rem 0;           /* space above/below video */
+            border-radius: 8px;       /* optional: nice rounded corners */
         }
-        .flashcard {
-            position: relative;
-            height: 300px;
-            perspective: 1000px;
-            margin: 20px;
-        }
-        .flashcard-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-        }
-        .flashcard.flipped .flashcard-inner {
-            transform: rotateY(180deg);
-        }
-        .flashcard-front, .flashcard-back {
+
+        .video-wrapper iframe {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            backface-visibility: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            box-sizing: border-box;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .flashcard-back {
-            transform: rotateY(180deg);
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-        .flashcard-controls {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-            background: #f0f0f0;
-        }
-        .flashcard-controls button {
-            padding: 10px 20px;
             border: none;
-            border-radius: 5px;
-            background: #667eea;
-            color: white;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background 0.2s;
         }
-        .flashcard-controls button:hover {
-            background: #5a67d8;
-        }
-        .flashcard-controls button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-        .progress {
-            text-align: center;
-            padding: 10px;
-            background: #e0e0e0;
-            font-size: 14px;
-        }
-        @media (max-width: 768px) {
-            .flashcard {
-                height: 250px;
-            }
-            .flashcard-front, .flashcard-back {
-                font-size: 20px;
-            }
+
+        /* Optional: make cards look better with videos */
+        .card {
+            padding: 1.5rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-<div class="logo">Celina English</div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#courses">Courses</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#resources">Resources</a></li>
-                <li><a href="#flashcards">Flashcards</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Welcome to Celina English</h1>
-            <p>Unlock your potential with expert English lessons in Addis Ababa.</p>
-            <a href="#courses" class="btn">Start Learning</a>
-        </div>
-        <img src="images/hero.jpg" alt="welcome to Celina English Language Academy, Addis Ababa">
-    </section>
-
-    <section id="about">
-        <h2>About Us</h2>
-        <p>Celina English is a premier language academy dedicated to helping students master English through interactive and fun methods. Founded in Addis Ababa, we serve beginners to advanced learners. We provide personalized language classes to help you develop your language skills for personal and professional success. Our experienced coaches will work with you to design a program that meets your specific needs and goals. At our language coaching academy, we are committed to delivering exceptional service and helping you achieve your language-related objectives. Contact us today to learn more about how we can assist you!</p>
-        <!-- Add more text or photos here -->
-    </section>
+    <!-- Your header/nav here if any -->
 
     <section id="courses">
         <h2>Our Courses</h2>
         <div class="grid">
+
+            <!-- Example: Beginner course -->
             <div class="card">
-                <h3>Beginner English</h3>
+                <h3>Beginner</h3>
                 <p>Basics of grammar and conversation.</p>
-                <iframe 
-                    src="https://www.youtube.com/embed/5W0QdlcvHag"
-                    title="Lesson 4 - Personal Information "
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                    </iframe>
+
+                <!-- === PASTE YOUR YOUTUBE EMBED HERE === -->
+                <!-- Go to YouTube → Share → Embed → Copy the <iframe> code -->
+                <!-- Paste ONLY the <iframe>...</iframe> part below -->
+                <div class="video-wrapper">
+                    <!-- Example placeholder - replace this whole iframe with your real one -->
+                    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE" 
+                            title="Beginner English Lesson" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                </div>
             </div>
+
+            <!-- Example: Intermediate course -->
             <div class="card">
                 <h3>Intermediate</h3>
                 <p>Build fluency with real-world practice.</p>
-                <iframe 
-                    src="https://www.youtube.com/embed/0x1opYF0ts8" 
-                    title="Lesson 3 - Daily routines/Everyday activities " 
-                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                    </iframe>
+
+                <div class="video-wrapper">
+                    <!-- === PASTE YOUR SECOND YOUTUBE EMBED HERE === -->
+                    <iframe src="https://www.youtube.com/embed/0x1opYF0ts8" 
+                            title="Intermediate Lesson - Everyday activities" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                </div>
             </div>
+
+            <!-- Example: Advanced course -->
             <div class="card">
                 <h3>Advanced</h3>
                 <p>Professional English for business and exams.</p>
-               <iframe 
-                   src="https://www.youtube.com/embed/6AF-iTEyl60" 
-                   title="Lesson 2 - Numbers, and how to say dates."
-                   frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                   allowfullscreen>
-                   </iframe>
+
+                <div class="video-wrapper">
+                    <!-- === PASTE YOUR THIRD YOUTUBE EMBED HERE === -->
+                    <iframe src="https://www.youtube.com/embed/GAF-iTEy160" 
+                            title="Advanced Lesson - Numbers and dates" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                </div>
             </div>
+
+            <!-- === ADD UNLIMITED MORE COURSES/VIDEOS HERE === -->
+            <!-- Just copy-paste the entire <div class="card"> ... </div> block below as many times as you want -->
+            <!-- Change the <h3>, <p> and iframe src/title each time -->
+
+            <!-- 
+            <div class="card">
+                <h3>Conversation Practice</h3>
+                <p>Real-life speaking situations and role-plays.</p>
+
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/NEW_VIDEO_ID_HERE" 
+                            title="Conversation Practice Lesson" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+            -->
+
+            <!-- Add another one the same way... and another... -->
+
         </div>
     </section>
 
@@ -266,7 +129,8 @@
             <!-- Add more: <img src="images/photo4.jpg" alt="..."> -->
         </div>
     </section>
-<section id="resources">
+
+    <section id="resources">
         <h2>Resources</h2>
         <p>Download free materials to enhance your learning. Use the search bar below to find specific resources (e.g., beginner, test, Charlotte's Web).</p>
         <div class="search-container">
@@ -335,7 +199,7 @@
             <div class="social-links">
                 <!-- Update with your actual links -->
                 <a href="https://www.tiktok.com/@celinalanguagecoach?_r=1&_t=ZS-93RRFDUrtMA" class="tiktok" target="_blank">
-<span class="icon"></span> TikTok
+                    <span class="icon"></span> TikTok
                 </a>
                 <a href="https://www.youtube.com/@celinaenglishcoach?si=0yto_K7ZIMrLig0d" class="youtube" target="_blank">
                     <span class="icon"></span> YouTube
@@ -361,7 +225,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 Celina English. All rights reserved. | Addis Ababa, Ethiopia</p>
+        <p>© 2026 Celina English. All rights reserved. | Addis Ababa, Ethiopia</p>
     </footer>
 
     <script src="script.js"></script>
@@ -418,11 +282,12 @@
         const progress = document.getElementById('progress');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
-function loadCard(index) {
+
+        function loadCard(index) {
             const card = flashcardsData[index];
             front.textContent = card.front;
-            back.innerHTML = <strong>\( {card.front}</strong><br><br> \){card.back};
-            progress.textContent = Card ${index + 1} of ${flashcardsData.length};
+            back.innerHTML = `<strong>\( {card.front}</strong><br><br> \){card.back}`;
+            progress.textContent = `Card ${index + 1} of ${flashcardsData.length}`;
             prevBtn.disabled = index === 0;
             nextBtn.disabled = index === flashcardsData.length - 1;
             isFlipped = false;
